@@ -31,13 +31,13 @@ class AuthController extends Controller
             return response()->json(['message' => 'Invalid email or password.'], 422);
         }
 
-        return ['user' => $user, 'token' => $user->createToken('vue')->plainTextToken];
+        return response()->json(['user' => $user, 'token' => $user->createToken('vue')->plainTextToken]);
     }
 
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
 
-        return ['message' => 'Logged out.'];
+        return response()->json(['message' => 'Logged out.']);
     }
 }
